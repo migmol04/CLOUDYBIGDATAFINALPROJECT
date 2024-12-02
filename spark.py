@@ -1,0 +1,1 @@
+#here we will use spark to read the data from the s3 bucket and perform the analysis on the data
