@@ -1,1 +1,0 @@
-#here we will plot the data using matplotlib and we will create a a pandoc with all the info
