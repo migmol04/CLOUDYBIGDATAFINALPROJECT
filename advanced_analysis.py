@@ -2,9 +2,8 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, avg, max, min, row_number, sum, year, to_date
 from pyspark.sql.window import Window
 
-def advanced_analysis_no_save(input_path):
-    # Crear sesión de Spark
-    spark = SparkSession.builder.appName("AdvancedAnalysis").getOrCreate()
+def advanced_analysis(input_path):
+    spark = SparkSession.builder.appName("AdvancedAnalysisForGraphs").getOrCreate()
 
     # Leer y preparar el dataset
     df = spark.read.csv(input_path, header=True, inferSchema=True)
@@ -41,11 +40,9 @@ def advanced_analysis_no_save(input_path):
                    .withColumn("CumulativeClose", sum("Close").over(Window.partitionBy("Year").orderBy("Date")))
     )
 
-    # Mostrar resultados en consola
-    print("Top 3 años con mayor promedio de cierre:")
-    ranked_years.show()
-    print("Tendencia acumulativa de cierre para los años seleccionados:")
-    trend_analysis.show()
+    # Convertir resultados a pandas para graficar
+    ranked_years_pd = ranked_years.toPandas()
+    trend_analysis_pd = trend_analysis.toPandas()
 
-    # Finalizar sesión de Spark
     spark.stop()
+    return ranked_years_pd, trend_analysis_pd
