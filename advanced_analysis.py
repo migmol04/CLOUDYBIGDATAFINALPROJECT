@@ -2,7 +2,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, avg, max, min, row_number, sum, year, to_date
 from pyspark.sql.window import Window
 
-def advanced_analysis(input_path):
+def advanced_analysis(input_path, output_path):
     spark = SparkSession.builder.appName("AdvancedAnalysisForGraphs").getOrCreate()
 
     # Leer y preparar el dataset
@@ -27,10 +27,11 @@ def advanced_analysis(input_path):
                     .filter(col("Rank") <= 3)  # Seleccionar los 3 años con mayor promedio
     )
 
-    # Extraer los años seleccionados
-    top_years = [row["Year"] for row in ranked_years.collect()]
+    # Guardar ranked_years en un archivo CSV
+    ranked_years.write.mode("overwrite").option("header", "true").csv(f"{output_path}/ranked_years")
 
     # Filtrar datos solo para los años seleccionados
+    top_years = [row["Year"] for row in ranked_years.collect()]
     filtered_df = df.filter(col("Year").isin(top_years))
 
     # Calcular la tendencia acumulativa de precios para cada año
@@ -40,9 +41,9 @@ def advanced_analysis(input_path):
                    .withColumn("CumulativeClose", sum("Close").over(Window.partitionBy("Year").orderBy("Date")))
     )
 
-    # Convertir resultados a pandas para graficar
-    ranked_years_pd = ranked_years.toPandas()
-    trend_analysis_pd = trend_analysis.toPandas()
+    # Guardar trend_analysis en un archivo CSV
+    trend_analysis.write.mode("overwrite").option("header", "true").csv(f"{output_path}/trend_analysis")
 
+    # Detener la sesión de Spark
     spark.stop()
-    return ranked_years_pd, trend_analysis_pd
+
