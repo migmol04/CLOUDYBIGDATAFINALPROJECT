@@ -83,3 +83,70 @@ We will be working **exclusively with CSV files** for this project, as they are 
   - **Dataproc**: Managed Spark and Hadoop clusters.  
 
 ---
+## Usage
+
+### 1. Installation in Local Mode
+
+#### Step 1: Create a Startup Script
+
+In your Cloud Shell, create a file named `spark.sh` with the following content:
+
+```bash
+#!/bin/bash
+echo export JAVA_HOME=/usr/lib/jvm/default-java >> /etc/profile.d/spark.sh
+echo export PATH=\$PATH:/usr/local/spark/bin >> /etc/profile.d/spark.sh
+apt-get update
+apt-get install -y default-jre python-is-python3
+wget https://dlcdn.apache.org/spark/spark-3.5.3/spark-3.5.3-bin-hadoop3.tgz
+tar xzf spark-3.5.3-bin-hadoop3.tgz
+mv spark-3.5.3-bin-hadoop3 /usr/local/spark
+```
+#### Step 2: Create a VM Instance with the Startup Script
+
+Run the following command to create a VM instance in GCP:
+
+```bash
+gcloud compute instances create spark-local --zone=europe-southwest1-a \
+--machine-type=e2-standard-4 --metadata-from-file startup-script=spark.sh
+```
+
+### 2. Local Job Submission
+
+#### Step 1: SSH into the VM
+Start your VM clicking SSH
+
+#### Step 2: Verify Spark Installation
+
+Check if Spark is correctly installed:
+
+```bash
+pyspark
+```
+### 3. Local Job Submission
+
+#### Step 1: Upload Files to the VM
+
+Upload all the files from this repository to the VM
+
+#### Step 2: Submit a Local Spark Job
+
+Execute the following command in the VM to submit a local Spark job:
+
+```bash
+spark-submit main.py A.csv output
+```
+
+#### Step 3: Check the Output
+
+Wait for the command to complete and check its output. When the command finishes, list the output folder (containing one file per reducer task):
+
+```bash
+ls output
+```
+
+View the content of the output files:
+
+```bash
+cat output/*
+```
+
