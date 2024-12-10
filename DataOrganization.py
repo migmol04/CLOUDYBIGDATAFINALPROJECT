@@ -20,6 +20,3 @@ def reorganize_data(input_path, output_path):
     )
     annual_stats.write.mode("overwrite").csv(output_path, header=True)
     spark.stop()
-
-# Usar la función
-reorganize_data("ruta/a/tu/dataset.csv", "ruta/a/salida")

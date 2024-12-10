@@ -14,10 +14,10 @@ def main():
     os.makedirs(output_path, exist_ok=True)
 
     # Llamar a la función de análisis
-    #AveragePrice.average_close_per_year(input_path, output_path)
+    AveragePrice.average_close_per_year(input_path, output_path)
     #DataOrganization.reorganize_data(input_path, output_path) 
     #InvertedIndex.inverted_index_max_close(input_path, output_path) 
-    advanced_analysis.advanced_analysis(input_path, output_path)
+    #advanced_analysis.advanced_analysis(input_path, output_path)
 
 if __name__ == "__main__":
     main()

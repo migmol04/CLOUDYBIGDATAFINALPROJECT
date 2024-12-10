@@ -21,8 +21,6 @@ def average_close_per_year(input_path, output_path):
           .orderBy("Year")
     )
 
-    # Mostrar el resultado para depurar
-    average_close_per_year.show()
 
     # Guardar el resultado en el directorio de salida
     average_close_per_year.write.mode("overwrite").csv(output_path, header=True)
