@@ -133,7 +133,7 @@ Upload all the files from this repository to the VM
 Execute the following command in the VM to submit a local Spark job:
 
 ```bash
-spark-submit main.py A.csv output
+spark-submit main.py A.csv output operation
 ```
 
 #### Step 3: Check the Output
