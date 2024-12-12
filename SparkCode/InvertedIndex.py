@@ -22,8 +22,6 @@ def inverted_index_max_close(input_path, output_path):
           .agg(collect_list(df_alias["Date"]).alias("Dates"))
           .select(df_alias["Year"], max_close["MaxClose"], "Dates")
     )
-
-    # Convertir la columna "Dates" de ARRAY<DATE> a STRING
     inverted_index = inverted_index.withColumn("Dates", concat_ws(", ", col("Dates")))
 
     # Guardar el resultado en formato CSV
