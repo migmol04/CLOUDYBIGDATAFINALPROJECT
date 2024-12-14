@@ -330,7 +330,7 @@ gcloud storage cat $BUCKET/output/* | more
 - **Google Cloud SDK Reference**: [gcloud CLI](https://cloud.google.com/sdk/gcloud)
 
 ## Authors:
-**Miguel Ángel Molina de la Rosa**
-**Santiago Ochoa de Zabalegui Velasco**
+- **Miguel Ángel Molina de la Rosa**
+- **Santiago Ochoa de Zabalegui Velasco**
 
 
