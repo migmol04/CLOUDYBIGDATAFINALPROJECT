@@ -308,6 +308,9 @@ $\text{Speedup} = \frac{113.80}{81.86} \approx 1.39$
 |---------------------------|--------------|-------------|
 | 1 executor, 1 core       | 113.80       | 1.00        |
 | 2 executors, 2 cores     | 81.86        | 1.39        |
+
+**Note:** We were unable to perform the test with 4 nodes because we ran out of Google Cloud credits, and the maximum quota available to us was limited to 2 nodes.
+
 ---
 
 ## Advanced Features
