@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
+from pyspark.sql.functions import col, avg, year, to_date
 
 def filter_by_number(input_path, output_path):
     spark = SparkSession.builder.appName("FilterByMinClose").getOrCreate()
