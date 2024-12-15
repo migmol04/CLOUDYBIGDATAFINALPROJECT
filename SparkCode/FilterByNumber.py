@@ -12,7 +12,17 @@ def filter_by_number(input_path, output_path):
         except ValueError:
             pass
 
-    filtered_df = df.filter(col("Close") > min_close)
+    df = df.withColumn("Date", to_date(col("Date"), "dd-MM-yyyy"))
+    df = df.filter(df["Date"].isNotNull())
+
+    average_close_per_year = (
+        df.withColumn("Year", year(col("Date")))
+          .groupBy("Year")
+          .agg(avg("Close").alias("AverageClose"))
+          .orderBy("Year")
+    )
+    
+    filtered_df = average_close_per_year.filter(col("AverageClose") > 30)
     filtered_df.write.mode("overwrite").csv(output_path, header=True)
 
     spark.stop()
