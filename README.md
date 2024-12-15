@@ -101,6 +101,7 @@ The project follows a modular architecture, organized into different components 
 - **`DataOrganization.py`**: Functions for reorganizing the dataset to improve data structure.
 - **`InvertedIndex.py`**: Functions for creating an inverted index of the maximum closing prices.
 - **`advanced_analysis.py`**: Provides advanced analytics on the dataset.
+- **`FilterByNumber.py`**: Filters the dataset based on a specified closing price.
 
 #### Visualization Modules
 
@@ -234,11 +235,23 @@ Upload all the files from the spark folder of this repository to the Cloud Shell
 
 Execute the following command in the Cloud Shell to create a Dataproc cluster:
 
+
 ```bash
-BUCKET=gs://BUCKET_NAME
+BUCKET=gs://finalprojectcloud
 gcloud dataproc jobs submit pyspark --cluster mycluster \
---region=europe-southwest1 main.py -- $BUCKET/input $BUCKET/output operation
+--region=europe-southwest1 main.py -- $BUCKET/forbes2000/csv $BUCKET/output operation
 ```
+
+view the dataset folders using the following commands:
+
+```bash
+gsutil ls gs://finalprojectcloud
+```
+
+> **Note:** Only CSV files can be used for this operation. 
+
+
+
 ### Possible Values for `operation`
 
 The `operation` parameter can take the following values:
@@ -246,7 +259,8 @@ The `operation` parameter can take the following values:
 - **`average_price`**: Calculate the average closing price per year.  
 - **`data_organization`**: Reorganize the dataset for better structure.  
 - **`inverted_index`**: Create an inverted index of the maximum closing prices.  
-- **`advanced_analysis`**: Perform advanced analytics on the dataset.  
+- **`advanced_analysis`**: Perform advanced analytics on the dataset.
+- **`filter_by_number`**: Filter the dataset based on a specified closing price.
 
 Wait for the job to be completed, check its output and check the output files with the following commands:
 
@@ -309,7 +323,7 @@ $\text{Speedup} = \frac{113.80}{81.86} \approx 1.39$
 | 1 executor, 1 core       | 113.80       | 1.00        |
 | 2 executors, 2 cores     | 81.86        | 1.39        |
 
-**Note:** We were unable to perform the test with 4 nodes because we ran out of Google Cloud credits, and the maximum quota available to us was limited to 2 nodes.
+> **Note:** We were unable to perform the test with 4 nodes because we ran out of Google Cloud credits, and the maximum quota available to us was limited to 2 nodes.
 
 ---
 
