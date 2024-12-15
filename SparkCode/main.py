@@ -1,7 +1,7 @@
 import os
 import sys
 import spark
-from time import time  # Importar la función time para medir el tiempo
+from time import time 
 
 def main():
     # Verificar los argumentos
