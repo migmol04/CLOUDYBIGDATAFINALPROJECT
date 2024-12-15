@@ -364,6 +364,7 @@ $\text{Speedup} = \frac{113.80}{81.86} \approx 1.39$
   - **Data Organization**: Reorganization of data for better structure and usability.
   - **Inverted Index**: Creation of an inverted index to facilitate efficient lookups.
   - **Advanced Analysis**: Performed trend analysis and other advanced computations.
+  - **Filter by Number**: Filtering the dataset based on a specified closing price.
 
 ### Improvements Suggested
 
