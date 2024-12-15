@@ -258,6 +258,37 @@ gcloud storage cat $BUCKET/output/* | more
 
 ## Performance Evaluation
 
+## Description
+
+This analysis compares the execution time of a Spark operation in two scenarios:
+
+1. **Sequential Execution** with 1 executor.
+2. **Parallel Execution** with 2 executors and 2 cores per executor.
+
+The operation executed is `average_price` using the following script.
+
+---
+
+## Bash Commands Used
+
+### Sequential Execution
+
+```bash
+BUCKET=gs://finalprojectcloud
+spark-submit main.py $BUCKET/forbes2000/csv $BUCKET/AveragePriceTest average_price
+```
+
+### Parallel Execution
+
+```bash
+spark-submit --num-executors 2 --executor-cores 2 main.py $BUCKET/forbes2000/csv $BUCKET/AveragePriceTest average_price
+```
+
+![Sequential Execution](./screenshots/tiempo1.png)
+
+
+![Parallel Execution](./screenshots/tiempo2.png)
+
 ---
 
 ## Advanced Features
