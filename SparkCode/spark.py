@@ -21,7 +21,7 @@ def run_spark_analysis(input_path, output_path, operation):
         FilterByNumber.filter_by_number(input_path, output_path)
     else:
         print(f"Operación desconocida: {operation}")
-        print("Operaciones disponibles: average_price, data_organization, inverted_index, advanced_analysis")
+        print("Operaciones disponibles: average_price, data_organization, inverted_index, advanced_analysis, filter_by_number")
     
     # Detener SparkSession
     spark.stop()
