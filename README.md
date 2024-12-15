@@ -284,11 +284,30 @@ spark-submit main.py $BUCKET/forbes2000/csv $BUCKET/AveragePriceTest average_pri
 spark-submit --num-executors 2 --executor-cores 2 main.py $BUCKET/forbes2000/csv $BUCKET/AveragePriceTest average_price
 ```
 
-![Sequential Execution](./screenshots/tiempo1.png)
+![Sequential Execution](./Screenshots/tiempo1.png)
 
 
-![Parallel Execution](./screenshots/tiempo2.png)
+![Parallel Execution](./Screenshots/tiempo2.png)
 
+## Speedup Calculation
+
+The speedup is calculated using the formula:
+
+$\text{Speedup} = \frac{\text{Sequential Time}}{\text{Parallel Time}}$
+
+- **Sequential Time**: 113.80 seconds  
+- **Parallel Time**: 81.86 seconds  
+
+**Speedup Calculation**
+
+$\text{Speedup} = \frac{113.80}{81.86} \approx 1.39$
+
+## Summary
+
+| **Configuration**        | **Time (s)** | **Speedup** |
+|---------------------------|--------------|-------------|
+| 1 executor, 1 core       | 113.80       | 1.00        |
+| 2 executors, 2 cores     | 81.86        | 1.39        |
 ---
 
 ## Advanced Features
