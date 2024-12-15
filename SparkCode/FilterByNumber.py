@@ -22,7 +22,7 @@ def filter_by_number(input_path, output_path):
           .orderBy("Year")
     )
     
-    filtered_df = average_close_per_year.filter(col("AverageClose") > 30)
+    filtered_df = average_close_per_year.filter(col("AverageClose") > min_close)
     filtered_df.write.mode("overwrite").csv(output_path, header=True)
 
     spark.stop()
