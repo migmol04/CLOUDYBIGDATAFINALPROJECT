@@ -13,6 +13,10 @@
 9. [Conclusions](#conclusions)  
 10. [References](#references)  
 
+**Note:**  
+Although fewer commits appear from my teammate, we worked together on one machine—my computer. All changes and contributions were made collaboratively, just recorded under my account.
+
+
 ---
 
 ## Project Description
